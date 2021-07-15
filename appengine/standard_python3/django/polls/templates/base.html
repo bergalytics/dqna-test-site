@@ -1,0 +1,101 @@
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- JS, Popper.js, and jQuery -->
+
+    <!-- DATA LAYER DEFINITIONS: -->
+    <script type="text/javascript">
+    var dataLayer = [{
+      'siteCountry': 'UK',                          // static, dummy value
+      'userId': 'OIBEFWURI983IY75KUGKUG764HI74',    // static, dummy value
+      'visitorType': 'high-value'                   // static, dummy value
+    }];
+    </script>
+
+    <!-- DATA LAYER DEFINITIONS: -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5JD9Z5F');</script>
+    <!-- End Google Tag Manager -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    </head>
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5JD9Z5F"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    {% block content %}
+    {% endblock %}
+
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="https://dqna.com/app/themes/dqna-theme-v2/dist/images/dqna-by-incubeta.svg" style="background-color:white;height:30px;" alt="DQ&A"/></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/about">About Us <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/contact">Contact Us <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Products</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="/products">All Products</a>
+                            <a class="dropdown-item" href="/basket">Basket</a>
+                        </div>
+                    </li>
+                    <a href="https://www.linkedin.com/company/dqna/" target="_blank">
+                        <img style="margin:0px 15px" width="30px" height="30px" src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Linkedin_unofficial_colored_svg-512.png" alt="LI">
+                    </a>
+                    <a href="https://www.facebook.com/DQNAMediaGroup/" target="_blank">
+                        <img style="margin:0px 15px" width="30px" height="30px" src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-512.png" alt="FB">
+                    </a>
+                    <a href="https://twitter.com/dqna?lang=en" target="_blank">
+                        <img style="margin:0px 15px" width="30px" height="30px" src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Twitter2_colored_svg-512.png" alt="Tw">
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCJ1CcgdfpV86STYOaJrwOxA" target="_blank">
+                        <img style="margin:0px 15px" width="30px" height="30px" src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Youtube_colored_svg-512.png" alt="YT">
+                    </a>
+
+                </ul>
+                    <a href="/basket" style="margin-right:20px;" ><h2> <button class="btn btn-outline-light my-2 my-sm-0" type="submit">View Basket</button> </h2> </a>
+                    <form class="form-inline my-2 my-lg-0" action="/searchResults">
+                    <input class="form-control mr-sm-2" name="searchTerm" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact {% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+    function sub(){
+        alert("Thanks for your feedback!");
+        document.getElementById('contact-form').submit();
+    }
+</script>
+
+<main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="background-image: url(https://ashdownphillips.com/wp-content/uploads/2017/03/The-Bower.jpg); background-size: auto;">
+        <div class="container">
+            <br>
+            <h1 class="display-1"><mark>Tell us what you think:</mark></h1><br>
+            <p><mark>Please send us some feedback via the form below ...</mark></p>
+            <form class="form my-2 my-lg-0" id="contact-form" action="contact" method="get">
+                <br><h2><mark>Name:</mark></h2>
+                <div class="col-lg-2">
+                    <input class="form-control" type="text" name="name" size="2" value="" placeholder="Your Name ..." ></input>
+                </div>
+                <br><h2><mark>Email:</mark></h2>
+                <div class="col-lg-2">
+                    <input class="form-control mr-auto" type="text" name="email" value="" placeholder="Your Email ..." ></input>
+                </div><br><h2><mark>Message:</mark><br></h2>
+                <div class="col-auto">
+                    <textarea name="message" rows="8" cols="80"></textarea>
+                </div>
+                <br><br>
+                <p>
+                    <a class="btn btn-light btn-lg" role="button" onclick="sub();">Submit &raquo;</a>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+
+</main>
+
+<footer class="container">
+    <p>&copy; DQ&A General Store 2021</p>
+</footer>
+{% endblock %}

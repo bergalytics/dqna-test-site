@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %} Thanks! {% endblock %}
+
+{% block content %}
+
+<script>
+    // Send transaction data with a pageview if available
+    // when the page loads. Otherwise, use an event when the transaction
+    // data becomes available.
+    dataLayer.push({
+      'event':'transaction',
+      'ecommerce': {
+        'purchase': {
+          'actionField': {
+            'id': '{{transactionId}}',                         // Transaction ID. Required for purchases and refunds.
+            'affiliation': 'Online Store',
+            'revenue': '{{total}}',                     // Total transaction value (incl. tax and shipping)
+            'tax':'4.90',
+            'shipping': '5.99',
+            'coupon': 'SUMMER_SALE'
+          },
+          'products': [
+
+           {% for product in products %}
+            {
+              'name': '{{product.name}}',       // Name or ID is required.
+              'id': '{{product.id}}',
+              'price': '{{product.price}}',
+              'brand': '{{product.brand}}',
+              'category': '{{product.category}}',
+              'variant': '{{product.variant}}',
+              'quantity': '{{product.quantity}}',
+              'coupon': 'SUMMER_SALE'
+            },
+            {% endfor %}
+
+           ]
+        }
+      }
+    });
+</script>
+
+<script type="text/javascript">
+    document.cookie="basket="
+</script>
+
+<main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="background-image: url(https://ashdownphillips.com/wp-content/uploads/2017/03/The-Bower.jpg);">
+        <div class="container">
+            <br>
+            <h1 class="display-1"><mark>Thank You!</mark></h1><br>
+            <h2><mark>Payment Successful</mark></h2>
+            <br/>
+            <p><a class="btn btn-light btn-lg" href="/" role="button">Return Home &raquo;</a></p>
+        </div>
+    </div>
+
+</main>
+
+<footer class="container">
+    <p>&copy; DQ&A General Store 2021</p>
+</footer>
+{% endblock %}

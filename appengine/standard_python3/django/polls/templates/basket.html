@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} Basket {% endblock %}
+
+{% block content %}
+
+<main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="background-image: url(https://ashdownphillips.com/wp-content/uploads/2017/03/The-Bower.jpg);">
+        <div class="container">
+            <br>
+            <h1 class="display-3"><mark>Your Basket</mark></h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <h1 class="display-1"><b>Total: £{{total}} </b> <br>
+            <a class="btn btn-warning btn-lg" href="payment" role="button">Proceed to Checkout &raquo;</a></h1>
+            {% if total > 0.00 %}
+                <a class="btn btn-danger btn-lg" href="basket" onclick="document.cookie='basket='" role="button">Empty Basket &raquo;</a></h1>
+            {% endif %}
+            {% if total == 0.00 %}
+                <br><h3>No products added to basket yet :(</h3>
+            {% endif %}
+        {% for product in products %}
+        <div class="row">
+        <h1>{{product.quantity}} x</h1>
+            <div class="col-md-4" style="padding-top:70px">
+                    <a href="/product/{{product.id}}">
+                    <img style=" width: 200px;height: 200px;object-fit: fill;" src="{{product.imgUrl}}"/>
+                    <h4>{{product.name}}</a><br>£{{product.price}}</h4>
+                <p style="font-size:12px">{{product.desc}}</p>
+            </div>
+        </div>
+        <hr/>
+        {% endfor %}
+        {% if total > 0.00 %}
+        <h1 class="display-1"><b>Total: £{{total}}</b>
+            <a class="btn btn-warning btn-lg" href="payment" role="button">Proceed to Checkout &raquo;</a></h1>
+        {% endif %}
+    </div> <!-- /container -->
+<hr>
+</main>
+
+<footer class="container">
+    <p>&copy; DQ&A General Store 2021</p>
+</footer>
+{% endblock %}

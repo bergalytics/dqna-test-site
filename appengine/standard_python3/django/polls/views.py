@@ -2,9 +2,91 @@ from django.http import HttpResponse, HttpResponseRedirect # noqa: 401
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
+from collections import Counter
+import uuid
 
-from .models import Choice, Question
+from .models import Choice, Question, Product
 
+def home(request):
+    products = Product.objects.all()[:3]
+    return render(request, "home.html",{
+        'products':products
+    })
+
+def about(request):
+    return render(request, "about.html",{})
+
+def product(request, pid):
+    product = Product.objects.get(id=pid)
+    return render(request, "product.html",{
+        'product':product
+    })
+
+def thanks(request):
+    products = {}
+    total = 0.00
+    transactionId = uuid.uuid1()
+    if request.COOKIES.get('basket'):
+        ids = request.COOKIES.get('basket').split(',')
+        products = Product.objects.filter(id__in=ids)
+        quantities = []
+        for p in products:
+            p.quantity = ids.count(str(p.id))
+            total = round(total + float(p.price) * p.quantity,2)
+    return render(request, "thanks.html",{
+        'products':products,
+        'total':total+5.99,
+        'transactionId': transactionId
+    })
+
+def contact(request):
+    return render(request, "contact.html",{})
+
+def payment(request):
+    products = {}
+    total = 0.00
+    transactionId = uuid.uuid1()
+    if request.COOKIES.get('basket'):
+        ids = request.COOKIES.get('basket').split(',')
+        products = Product.objects.filter(id__in=ids)
+        quantities = []
+        for p in products:
+            p.quantity = ids.count(str(p.id))
+            total = round(total + float(p.price) * p.quantity,2)
+    return render(request, "payment.html",{
+        'products':products,
+        'total':total+5.99,
+        'transactionId': transactionId
+    })
+
+def products(request):
+    products = Product.objects.all()
+    return render(request, "products.html",{
+        'products':products
+    })
+
+def basket(request):
+    products = {}
+    total = 0.00
+    if request.COOKIES.get('basket'):
+        ids = request.COOKIES.get('basket').split(',')
+        products = Product.objects.filter(id__in=ids)
+        quantities = []
+        for p in products:
+            p.quantity = ids.count(str(p.id))
+            total = round(total + float(p.price) * p.quantity,2)
+    return render(request, "basket.html",{
+        'products':products,
+        'total':total
+    })
+
+def searchResults(request):
+    products = Product.objects.all()
+    results = len(products)
+    return render(request, "searchResults.html",{
+        'products':products,
+        'results':results
+    })
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'

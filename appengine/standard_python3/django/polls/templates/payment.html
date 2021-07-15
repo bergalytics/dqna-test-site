@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %} Payment {% endblock %}
+
+{% block content %}
+
+<script>
+    /**
+     * A function to handle a click on a checkout button. This function uses the eventCallback
+     * data layer variable to handle navigation after the ecommerce data has been sent to Google Analytics.
+     */
+    function onCheckout() {
+      dataLayer.push({
+        'event': 'checkout',
+        'ecommerce': {
+          'checkout': {
+            'actionField': {'step': 1, 'option': 'Visa'},
+            'products': [
+                {% for product in products %}
+                 {
+                   'name': '{{product.name}}',       // Name or ID is required.
+                   'id': '{{product.id}}',
+                   'price': '{{product.price}}',
+                   'brand': '{{product.brand}}',
+                   'category': '{{product.category}}',
+                   'variant': '{{product.variant}}',
+                   'quantity': '{{product.quantity}}'
+                 },
+                 {% endfor %}
+            ]
+         }
+       }
+      });
+    }
+    onCheckout()
+</script>
+
+<main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="background-image: url(https://ashdownphillips.com/wp-content/uploads/2017/03/The-Bower.jpg); background-size: auto;">
+        <div class="container">
+            <br>
+            <h1 class="display-1"><mark>Enter Payment Info</mark></h1><br>
+            <form class="form my-2 my-lg-0" id="form-id" action="thanks" method="get">
+                <br><h2><mark>Card Number:</mark></h2>
+                <div class="col-lg-6">
+                    <input class="form-control" type="text" name="number" size="200" value="4488339922001928" placeholder="4488339922001928" ></input>
+                </div>
+                <br><h2><mark>Expiry:</mark></h2>
+                <div class="col-lg-6">
+                    <input class="form-control mr-auto" type="text" name="expiry" value="01/20" placeholder="01/20" ></input>
+                </div><br>
+                <h2><mark>Message:</mark><br></h2>
+                <div class="col-lg-5">
+                    <input class="form-control mr-auto" type="text" name="secure" value="123" placeholder="321" ></input>
+                </div
+                <br><br>
+                <p>
+                    <a class="btn btn-light btn-lg" role="button" onclick="document.getElementById('form-id').submit();">Submit &raquo;</a>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+
+</main>
+
+<footer class="container">
+    <p>&copy; DQ&A General Store 2021</p>
+</footer>
+{% endblock %}

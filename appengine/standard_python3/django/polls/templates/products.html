@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %} Products {% endblock %}
+
+{% block content %}
+
+<script>
+    // Measures product impressions and also tracks a standard
+    // pageview for the tag configuration.
+    // Product impressions are sent by pushing an impressions object
+    // containing one or more impressionFieldObjects.
+    dataLayer.push({
+      'event': 'products',
+      'ecommerce': {
+        'currencyCode': 'GBP',                       // Local currency is optional.
+        'impressions': [
+
+            {% for product in products %}
+             {
+               'name': '{{product.name}}',       // Name or ID is required.
+               'id': '{{product.id}}',
+               'price': '{{product.price}}',
+               'brand': '{{product.brand}}',
+               'category': '{{product.category}}',
+               'variant': '{{product.variant}}',
+               'list': 'Homepage',
+               'position': {{forloop.counter}}
+             },
+             {% endfor %}
+
+         ]
+      }
+    });
+</script>
+
+<script type="text/javascript">
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+    function product(name,id,price,brand,category,variant){
+        // Measure adding a product to a shopping cart by using an 'add' actionFieldObject
+        // and a list of productFieldObjects.
+        dataLayer.push({
+          'event': 'addToCart',
+          'ecommerce': {
+            'currencyCode': 'EUR',
+            'add': {                                // 'add' actionFieldObject measures.
+              'products': [{                        //  adding a product to a shopping cart.
+                'name': name,
+                'id': id,
+                'price': price,
+                'brand': brand,
+                'category': category,
+                'variant': variant,
+                'quantity': 1
+               }]
+            }
+          }
+        });
+    }
+    function addToBasket(pid,name,price,brand,category,variant){
+        product(name,pid,price,brand,category,variant);
+        basket=getCookie('basket').split(',');
+        basket.push(pid);
+        document.cookie='basket='+basket.join()+';SameSite=Strict;Path=/';
+    }
+</script>
+
+<main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="background-image: url(https://ashdownphillips.com/wp-content/uploads/2017/03/The-Bower.jpg);">
+        <div class="container">
+            <br>
+            <h1 class="display-3"><mark>All Products</mark></h1>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-4" style="padding-top:70px">
+                    <a href="/product/{{product.id}}">
+                    <img style=" width: 200px;height: 200px;object-fit: fill;" src="{{product.imgUrl}}"/>
+                    <h4>{{product.name}}</a><br>£{{product.price}}</h4>
+                <p style="font-size:12px">{{product.desc}}</p>
+                <p><a class="btn btn-light" onclick="javascript:addToBasket('{{product.id}}','{{product.name}}','{{product.price}}','{{product.brand}}','{{product.category}}','{{product.variant}}')" role="button">Add to Basket &raquo;</a></p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <hr>
+
+    </div> <!-- /container -->
+
+</main>
+
+<footer class="container">
+    <p>&copy; DQ&A General Store 2021</p>
+</footer>
+{% endblock %}

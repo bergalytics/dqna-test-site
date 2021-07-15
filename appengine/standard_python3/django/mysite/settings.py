@@ -93,10 +93,10 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/[YOUR-CONNECTION-NAME]',
-            'USER': '[YOUR-USERNAME]',
-            'PASSWORD': '[YOUR-PASSWORD]',
-            'NAME': '[YOUR-DATABASE]',
+            'HOST': '/cloudsql/uk-dqna-app-gtm-tester:europe-west2:gtm-tester',
+            'USER': 'root',
+            'PASSWORD': 'test',
+            'NAME': 'polls',
         }
     }
 else:
@@ -111,9 +111,9 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3306',
-            'NAME': '[YOUR-DATABASE]',
-            'USER': '[YOUR-USERNAME]',
-            'PASSWORD': '[YOUR-PASSWORD]',
+            'NAME': 'polls',
+            'USER': 'root',
+            'PASSWORD': 'test',
         }
     }
 # [END db_setup]
