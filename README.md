@@ -11,7 +11,7 @@ Python samples for [Google Cloud Platform products][cloud].
 1. Clone this repository:
 
     ```
-    git clone https://github.com/GoogleCloudPlatform/python-docs-samples.git
+    git clone https://github.com/bergalytics/dqna-test-site.git
     ```
 
 1. Obtain authentication credentials.
